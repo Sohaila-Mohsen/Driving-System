@@ -10,5 +10,13 @@ package drivingsystem;
  * @author DELL
  */
 public enum regularUserStatue {
-    
+    ACTIVE,SUSPENDED;
+    @Override
+    public String toString(){
+        switch (this){
+            case ACTIVE : return "Active";
+            case SUSPENDED : return "Suspended";
+            default: return "Active";
+        }
+    }
 }

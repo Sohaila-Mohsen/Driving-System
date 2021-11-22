@@ -10,12 +10,12 @@ package drivingsystem;
  * @author DELL
  */
 public class AbstractUser {
-    private String name;
-    private String mobileNumber;
-    private String password;
-    private String email;
-    private Regesteration regesteration;
-    private int id ; 
+    protected String name;
+    protected String mobileNumber;
+    protected String password;
+    protected String email;
+    protected Regesteration regesteration;
+    protected int id ; 
     public DB DataBase ;
 
     public DriverStatue regester(AbstractUser abstractuser){
