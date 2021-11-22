@@ -18,9 +18,11 @@ public class AbstractUser {
     private int id ; 
     DB DataBase ;
 
-    public void register(this){
+    public DriverStatue regester(AbstractUser abstractuser){
         
     }
-    public login(mobileNumber : string , pass : string) : boolean
+    public boolean login(String mobileNumber , String pass) {
+        
+    }
 
 }

@@ -9,6 +9,7 @@ package drivingsystem;
  *
  * @author DELL
  */
-public interface Regesteration {
-   public DriverStatue regester(AbstractUser abstractuser);
+public class Rate {
+    public float rate ;
+    public int userId ;
 }

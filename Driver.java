@@ -9,6 +9,6 @@ package drivingsystem;
  *
  * @author DELL
  */
-public class Driver {
+public class Driver extends AbstractUser {
     
 }

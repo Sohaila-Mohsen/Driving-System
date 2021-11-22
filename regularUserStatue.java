@@ -9,6 +9,6 @@ package drivingsystem;
  *
  * @author DELL
  */
-public interface Regesteration {
-   public DriverStatue regester(AbstractUser abstractuser);
+public enum regularUserStatue {
+    
 }
