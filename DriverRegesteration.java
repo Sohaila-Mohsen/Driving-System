@@ -9,9 +9,9 @@ package drivingsystem;
  *
  * @author DELL
  */
-public class DriverRegesteration implements Regestration {
+public class DriverRegesteration implements Regesteration {
     @Override
-    public void regester(){
+    public DriverStatue regester(AbstractUser abstractuser){
         
     
 }
