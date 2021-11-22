@@ -16,7 +16,7 @@ public class AbstractUser {
     private String email;
     private Regesteration regesteration;
     private int id ; 
-    DB DataBase ;
+    public DB DataBase ;
 
     public DriverStatue regester(AbstractUser abstractuser){
         
