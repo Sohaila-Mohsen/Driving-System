@@ -9,10 +9,15 @@ package drivingsystem;
  *
  * @author DELL
  */
-public class AdminRegesteration implements Regesteration {
+public enum UserStatue {
+    SUSPENDED,ACTIVE;
     @Override
-   public void regester(AbstractUser abstractuser){
-
+    public String toString(){
+        switch (this){
+            case SUSPENDED : return "SUSPENDED";
+            case ACTIVE : return "Active";
+            default: return "Active";
+        }
     }
     
 }

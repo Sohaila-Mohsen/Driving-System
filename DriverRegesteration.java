@@ -11,8 +11,8 @@ package drivingsystem;
  */
 public class DriverRegesteration implements Regesteration {
     @Override
-    public DriverStatue regester(AbstractUser abstractuser){
-        
-    
+    public void regester(AbstractUser abstractuser){
+       
+
 }
 }

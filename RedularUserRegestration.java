@@ -11,7 +11,9 @@ package drivingsystem;
  */
 public class RedularUserRegestration implements Regesteration {
     @Override
-   public DriverStatue regester(AbstractUser abstractuser){
-        
+    public void regester(AbstractUser abstractuser) {
+        abstractuser = new RegularUser();
+        dataBase.addRuser(abstractuser);
+
     }
 }
