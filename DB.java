@@ -64,6 +64,8 @@ public class DB {
             Database = new DB();
         return Database;
     }
+    public RegularUser searchUser(String monbileNumber, String pass){
+
     public AbstractUser searchUser(String monbileNumber, String pass){
         for(int i=0 ; i<regularUsers.size() ; i++)
         {
@@ -108,13 +110,17 @@ public class DB {
        }
          return null;
     }
+    public void addRuser(RegularUser abstractuser){
+        regularUsers.add(abstractuser);
     public void addRuser(RegularUser rUser){
         regularUsers.add(rUser);
+
     }
     public void addAdmin (Admin admin){
         admins.add(admin);
     }
     public void removePending(Driver driver){
+    	pending.remove(driver);
         drivers.remove(driver);
     }
 
@@ -134,6 +140,7 @@ public class DB {
     } 
     public void listRuser(){
         for (int i = 0; i < regularUsers.size(); i++) {
+        	RegularUser r = regularUsers.get(i);
             RegularUser r = regularUsers.get(i);
             System.out.println("User # "+r.id+"\n"+r.name);     
         }
@@ -144,6 +151,16 @@ public class DB {
             System.out.println("Driver # "+d.id+"\n"+d.name);
         }
     }
+    
+    ///////////////list Rides/////////////
+    public void listRides(){
+        for(int i = 0; i < requestedRides.size(); i++) {
+            RideDetails ride= requestedRides.get(i);
+            System.out.println("Ride # "+ride.getRideId()+" : with"+"\n"+"Source : "+ride.getSource()+"\n"+"Destination" +ride.getDestnation());
+        }
+    }
+    
+
     public void addRide(RideDetails confirmed){
         for(int i = 0; i < requestedRides.size(); i++) {
             if(confirmed.equals(requestedRides.get(i)))
@@ -158,3 +175,8 @@ public class DB {
 
     
 }
+
+
+
+
+//t

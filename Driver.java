@@ -85,6 +85,14 @@ public class Driver extends AbstractUser {
     public void register(Driver driver){
 
     }
+    //////////take Ride///////////
+	
+//	 public void takeRide()
+//	 { 
+//		 DataBase.listRides();
+//		 System.out.println("Enter suggested price");
+//	 }
+	 
 
 public void suggestPrice(int rideId , float price){
     if(DataBase.searchRequstedRides(rideId) != null )

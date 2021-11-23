@@ -28,12 +28,27 @@ public class Admin extends AbstractUser{
         driver.setStatue(DriverStatue.ACTIVE);
     }
     public void suspendDriver(int id){
+         Driver driver = DataBase.searchDriver(id);
+         driver.setStatue(DriverStatue.SUSPENDED);
+    }
+    
+    public void RejectPending(int id){
+        Driver driver = DataBase.searchPennding(id);
+        DataBase.removePending(driver);
+   }
+    
+    ///////////
+    public void suspendRuser(int id){
+    	AbstractUser user=new RegularUser();
+        user = DataBase.searchUser(id);
+       // user.setStatue(UserStatue.SUSPENDED);
          Driver driver = DataBase.searchPennding(id);
          driver.setStatue(DriverStatue.SUSPENDED);
     }
     public void suspendRuser(int id){
         RegularUser user = DataBase.searchUser(id);
         user.setStatue(UserStatue.SUSPENDED);
+
     }
     
 }

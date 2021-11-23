@@ -77,10 +77,13 @@ public class AbstractUser {
     
     public DriverStatue regester(AbstractUser abstractuser){
         
-        
+
+    	DriverStatue r=null;
+    	return r;
+    	
     }
-    public boolean login(String mobileNumber , String pass) {
-        
+    public static boolean login(String mobileNumber , String pass) {
+        return false;
     }
 
 }
