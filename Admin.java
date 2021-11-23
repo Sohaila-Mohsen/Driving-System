@@ -42,6 +42,13 @@ public class Admin extends AbstractUser{
     	AbstractUser user=new RegularUser();
         user = DataBase.searchUser(id);
        // user.setStatue(UserStatue.SUSPENDED);
+         Driver driver = DataBase.searchPennding(id);
+         driver.setStatue(DriverStatue.SUSPENDED);
+    }
+    public void suspendRuser(int id){
+        RegularUser user = DataBase.searchUser(id);
+        user.setStatue(UserStatue.SUSPENDED);
+
     }
     
 }

@@ -12,4 +12,5 @@ package drivingsystem;
 public interface Regesteration {
    DB dataBase = DB.getDatabase();
    public void regester(AbstractUser abstractuser);
+   public DriverStatue regester(AbstractUser abstractuser);
 }

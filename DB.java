@@ -65,6 +65,8 @@ public class DB {
         return Database;
     }
     public RegularUser searchUser(String monbileNumber, String pass){
+
+    public AbstractUser searchUser(String monbileNumber, String pass){
         for(int i=0 ; i<regularUsers.size() ; i++)
         {
             if(regularUsers.get(i).mobileNumber.equalsIgnoreCase(monbileNumber) && regularUsers.get(i).password.equalsIgnoreCase(pass)){
@@ -110,12 +112,16 @@ public class DB {
     }
     public void addRuser(RegularUser abstractuser){
         regularUsers.add(abstractuser);
+    public void addRuser(RegularUser rUser){
+        regularUsers.add(rUser);
+
     }
     public void addAdmin (Admin admin){
         admins.add(admin);
     }
     public void removePending(Driver driver){
     	pending.remove(driver);
+        drivers.remove(driver);
     }
 
     public void addPending(Driver driver) {
@@ -135,6 +141,7 @@ public class DB {
     public void listRuser(){
         for (int i = 0; i < regularUsers.size(); i++) {
         	RegularUser r = regularUsers.get(i);
+            RegularUser r = regularUsers.get(i);
             System.out.println("User # "+r.id+"\n"+r.name);     
         }
     }
@@ -153,6 +160,7 @@ public class DB {
         }
     }
     
+
     public void addRide(RideDetails confirmed){
         for(int i = 0; i < requestedRides.size(); i++) {
             if(confirmed.equals(requestedRides.get(i)))

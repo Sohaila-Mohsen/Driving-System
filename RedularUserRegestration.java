@@ -15,5 +15,8 @@ public class RedularUserRegestration implements Regesteration {
         abstractuser = new RegularUser();
         dataBase.addRuser(abstractuser);
 
+    public DriverStatue regester(AbstractUser abstractuser) {
+        abstractuser = new RegularUser();
+        dataBase.addRuser(abstractuser);
     }
 }

@@ -13,6 +13,12 @@ public class DriverRegesteration implements Regesteration {
     @Override
     public void regester(AbstractUser abstractuser){
        
+    public DriverStatue regester(AbstractUser abstractuser){
+        
+        
+        
+        
+    //statue = DriverStatue.PENDING ;
 
 }
 }
