@@ -13,17 +13,27 @@ public class Admin extends AbstractUser{
     void register(Admin admin) {
         
     }
-    void verify(){
 
+    public void listAllPending(){
+        DataBase.listPendding();
     }
-    void verify(int id){
-
+    //   void verify(){
+//       DataBase.listDrivers();
+//
+//    }
+    public void verify(int id){
+        Driver driver = DataBase.searchPennding(id);
+        DataBase.removePending(driver);
+        DataBase.addDriver(driver);
+        driver.setStatue(DriverStatue.ACTIVE);
     }
-    void suspendDriver(int id){
-
+    public void suspendDriver(int id){
+         Driver driver = DataBase.searchPennding(id);
+         driver.setStatue(DriverStatue.SUSPENDED);
     }
-    void suspendRuser(int id){
-
+    public void suspendRuser(int id){
+        RegularUser user = DataBase.searchUser(id);
+        user.setStatue(UserStatue.SUSPENDED);
     }
     
 }

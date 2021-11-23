@@ -10,5 +10,6 @@ package drivingsystem;
  * @author DELL
  */
 public interface Regesteration {
+   DB dataBase = DB.getDatabase();
    public DriverStatue regester(AbstractUser abstractuser);
 }
