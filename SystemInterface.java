@@ -339,9 +339,10 @@ public class SystemInterface {
 			
 			l=new AdminLogin();
 			AbstractUser A= l.verifyInformation(mo, password);
+                        A=new Admin();
 			if(A !=null)
 			{
-				driverInterface(A);
+				adminInterface(A);
 			}
 			else
 			{
