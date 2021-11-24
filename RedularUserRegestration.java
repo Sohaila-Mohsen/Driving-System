@@ -10,13 +10,15 @@ package drivingsystem;
  * @author DELL
  */
 public class RedularUserRegestration implements Regesteration {
-    @Override
-    public void regester(AbstractUser abstractuser) {
-        abstractuser = new RegularUser();
-        dataBase.addRuser(abstractuser);
-
-    public DriverStatue regester(AbstractUser abstractuser) {
-        abstractuser = new RegularUser();
-        dataBase.addRuser(abstractuser);
-    }
+	@Override
+	public void regester(AbstractUser regular) {
+	    	
+		if (dataBase.searchDriver(regular.mobileNumber)==null) {
+			dataBase.addRuser(regular);
+		}
+		else 
+			System.out.print("ERROR:USER DATA IN DATABASE!!");	        
+		// TODO Auto-generated method stub
+		
+	}
 }
