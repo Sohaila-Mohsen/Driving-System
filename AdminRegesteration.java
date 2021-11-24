@@ -11,8 +11,13 @@ package drivingsystem;
  */
 public class AdminRegesteration implements Regesteration {
     @Override
-   public void regester(AbstractUser abstractuser){
-
-    }
+	public void regester(AbstractUser admin) {
+		if (dataBase.searchAdminPhone(admin.mobileNumber)==null) {
+			dataBase.addAdmin(admin);
+		}
+		else 
+                    System.out.print("ERROR:ADMIN DATA IN DATABASE!!");
+		
+	}
     
 }
