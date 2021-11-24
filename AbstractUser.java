@@ -9,15 +9,23 @@ package drivingsystem;
  *
  * @author DELL
  */
-public class AbstractUser {
+ public class  AbstractUser {
     protected String name;
     protected String mobileNumber;
     protected String password;
     protected String email;
-    protected Regesteration regesteration;
+    private static int incremental=1;
+    protected boolean logedIn;
     protected int id ; 
     public DB DataBase ;
 
+    public AbstractUser() {
+        this.DataBase = DB.getDatabase();
+        logedIn =false;
+        incremental++;
+        id = incremental;
+        
+    } 
     public String getName() {
         return name;
     }
@@ -50,14 +58,6 @@ public class AbstractUser {
         this.email = email;
     }
 
-    public Regesteration getRegesteration() {
-        return regesteration;
-    }
-
-    public void setRegesteration(Regesteration regesteration) {
-        this.regesteration = regesteration;
-    }
-
     public int getId() {
         return id;
     }
@@ -69,21 +69,12 @@ public class AbstractUser {
     public DB getDataBase() {
         return DataBase;
     }
-
+    public void setLogedIn(boolean value)
+    {
+    	logedIn=value;
+    }
     public void setDataBase(DB DataBase) {
         this.DataBase = DataBase;
-    }
-    
-    
-    public DriverStatue regester(AbstractUser abstractuser){
-        
-
-    	DriverStatue r=null;
-    	return r;
-    	
-    }
-    public static boolean login(String mobileNumber , String pass) {
-        return false;
     }
 
 }
