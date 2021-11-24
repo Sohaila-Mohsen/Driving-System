@@ -14,8 +14,8 @@ public class UserNotification implements Notification{
     private int rideId ;
 
     public UserNotification( float price ,int rideId , int driverId) {
+        this.rideId = rideId;     
         message ="Driver #"+driverId+" with rating "+dataBase.searchDriver(driverId).getRating().getAvrege()+"$ suggested "+price+ "$ for ride # "+rideId;
-        this.rideId = rideId;
     }
 
     @Override
