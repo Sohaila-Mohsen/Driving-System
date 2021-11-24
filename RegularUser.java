@@ -13,12 +13,7 @@ public class RegularUser extends AbstractUser {
  
     private RideDetails currentRide ;
     private UserStatue statue;
-    
-    
-    public void register(RegularUser regularUser)//this
-    {
-        
-    }
+  
 
     public UserStatue getStatue() {
         return statue;
@@ -39,12 +34,18 @@ public class RegularUser extends AbstractUser {
     public void update(String message) {
          System.out.println(message);
     }
-    //public void confirmRide (){
-    //  
-    //}
-    public void rate (int dtiverId , float rate) {
-        if(rate >=1 && rate<=5)
-            DataBase.searchDriver(id).getRating().addRating(rate, this.id);
+
+    public void rate (int driverId , float rate) {
+        Driver d = DataBase.searchDriver(driverId);
+        if(d==null)
+            System.out.println("Driver not Found");
+        else{
+        if(rate >=1 && rate<=5){
+           d.getRating().addRating(rate, this.getId());
+        }
+        else
+            System.out.println("Rating Must Be between 1 and 5 ");
+        }
 
     }
 }
