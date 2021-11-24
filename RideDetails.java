@@ -24,8 +24,7 @@ public class RideDetails {
         
     public RideDetails(){
         rideId = ++Id;
-        Notification n = new DriverNotification(source , destnation ,user.id);
-        n.notifyAllObservers();
+        suggestedPrices = new ArrayList<>();
     }    
     
     public int getRideId() {
