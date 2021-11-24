@@ -19,7 +19,13 @@ public class Driver extends AbstractUser {
     private Rating rating ;
     private String currentRide ;
 
+    public Driver() {
+        this.favoriteArea = new ArrayList<>();
+        this.rating = new Rating();
+        id++;
+    }
 
+    
     public String getLicence() {
         return licence;
     }
@@ -55,9 +61,9 @@ public class Driver extends AbstractUser {
     public void listPossibleRides() {
         for (int i = 0; i < DataBase.getRequestedRides().size(); i++) {
             for(int j=0 ; j<favoriteArea.size();j++){
-                if ( DataBase.getRequestedRides().get(i).getSource()==favoriteArea.get(i))
-                    System.out.print("User #"+DataBase.getRequestedRides().get(i).getUser().id+" reruested ride from "+DataBase.getRequestedRides().get(i).getSource());
-                  System.out.println(" to "+DataBase.getRequestedRides().get(i).getDestnation());
+                if ( DataBase.getRequestedRides().get(i).getSource().equals(favoriteArea.get(i))){
+                  System.out.print("User #"+DataBase.getRequestedRides().get(i).getUser().id+" reruested ride # "+DataBase.getRequestedRides().get(i).getRideId());
+                  System.out.println(" from "+DataBase.getRequestedRides().get(i).getSource() +" to "+DataBase.getRequestedRides().get(i).getDestnation());}
             }
         }
     }
@@ -82,30 +88,13 @@ public class Driver extends AbstractUser {
         this.currentRide = currentRide;
     }
 
-    public void register(Driver driver){
-
+    public void suggestPrice(int rideId , float price){
+        if(DataBase.searchRequstedRides(rideId) != null )
+                DataBase.searchRequstedRides(rideId).addPrice(price,id);
+        else
+            System.out.println("Ride is no lonnger available");
     }
-    //////////take Ride///////////
-	
-//	 public void takeRide()
-//	 { 
-//		 DataBase.listRides();
-//		 System.out.println("Enter suggested price");
-//	 }
-	 
-
-public void suggestPrice(int rideId , float price){
-    if(DataBase.searchRequstedRides(rideId) != null )
-            DataBase.searchRequstedRides(rideId).addPrice(price, rideId);
-    else
-        System.out.println("Ride is no lonnger available");
-}
-public void update (String message){
-    System.out.println(message);
-}
-
-
-
-
-
+    public void update (String message){
+        System.out.println(message);
+    }
 }
