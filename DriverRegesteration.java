@@ -11,14 +11,13 @@ package drivingsystem;
  */
 public class DriverRegesteration implements Regesteration {
     @Override
-    public void regester(AbstractUser abstractuser){
-       
-    public DriverStatue regester(AbstractUser abstractuser){
-        
-        
-        
-        
-    //statue = DriverStatue.PENDING ;
-
-}
+    public void regester(AbstractUser driver){
+    	
+		if (dataBase.searchDriver(driver.mobileNumber)==null && dataBase.searchPending(driver.mobileNumber)==null) {
+			dataBase.addPending(driver);
+		}
+		else 
+			System.out.print("ERROR:DRIVER DATA IN DATABASE!!");
+		
+	}
 }
