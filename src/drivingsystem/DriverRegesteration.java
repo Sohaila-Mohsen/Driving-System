@@ -5,15 +5,21 @@
  */
 package drivingsystem;
 
+import javax.jws.WebService;
+
 /**
  *
  * @author DELL
  */
+@WebService
 public class DriverRegesteration implements Regesteration {
+	
+	SearchDriver searchDriver=new SearchDriver();
+	
     @Override
     public void regester(AbstractUser driver){
     	
-		if (dataBase.searchDriver(driver.mobileNumber)==null && dataBase.searchPending(driver.mobileNumber)==null) {
+		if (searchDriver.searchDriver(driver.mobileNumber)==null && searchDriver.searchPending(driver.mobileNumber)==null) {
 			dataBase.addPending(driver);
 		}
 		else 

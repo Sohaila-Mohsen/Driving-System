@@ -5,15 +5,29 @@
  */
 package drivingsystem;
 
+import java.util.ArrayList;
+import javax.jws.WebService;
+
 /**
  *
  * @author DELL
  */
+@WebService
 public class RegularUser extends AbstractUser {
  
-    private RideDetails currentRide ;
+    protected RideDetails currentRide ;
+    protected boolean logedin;
+    private  ArrayList<String> notifications;
     private UserStatue statue;
+    private SearchDriver searchDriver =new SearchDriver();
+    private RegularUserControler conroler;
+
+    public RegularUser() {
+        this.conroler = new RegularUserControler(this);
+        notifications = new ArrayList<>();
+    }
   
+    
 
     public UserStatue getStatue() {
         return statue;
@@ -22,30 +36,48 @@ public class RegularUser extends AbstractUser {
     public void setStatue(UserStatue statue) {
         this.statue = statue;
     }
+
+    public RideDetails getCurrentRide() {
+        return currentRide;
+    }
+
+    public void setCurrentRide(RideDetails currentRide) {
+        this.currentRide = currentRide;
+    }
+
+    public SearchDriver getSearchDriver() {
+        return searchDriver;
+    }
+
+    public void setSearchDriver(SearchDriver searchDriver) {
+        this.searchDriver = searchDriver;
+    }
+
+    public boolean isLogedin() {
+        return logedin;
+    }
+
+    public void setLogedin(boolean logedin) {
+        this.logedin = logedin;
+    }
     
-    public void requestRide(String source, String des){
-        currentRide = new RideDetails();
-        currentRide.setSource(source);
-        currentRide.setDestnation(des);
-        currentRide.setUser(this);
-        DataBase.addRequested(currentRide);
+    public RegularUserControler getConroler() {
+        return conroler;
     }
 
-    public void update(String message) {
-         System.out.println(message);
+    public void setConroler(RegularUserControler conroler) {
+        this.conroler = conroler;
     }
 
-    public void rate (int driverId , float rate) {
-        Driver d = DataBase.searchDriver(driverId);
-        if(d==null)
-            System.out.println("Driver not Found");
-        else{
-        if(rate >=1 && rate<=5){
-           d.getRating().addRating(rate, this.getId());
-        }
-        else
-            System.out.println("Rating Must Be between 1 and 5 ");
-        }
-
+    public ArrayList<String> getNotifications() {
+        return notifications;
     }
+
+    public void setNotifications(ArrayList<String> notifications) {
+        this.notifications = notifications;
+    }
+    public void addNotification(String notification) {
+        this.notifications.add(notification);
+    }  
+    
 }

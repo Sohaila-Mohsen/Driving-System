@@ -5,10 +5,13 @@
  */
 package drivingsystem;
 
+import javax.jws.WebService;
+
 /**
  *
  * @author DELL
  */
+@WebService
 public interface Notification {
     public DB dataBase = DB.getDatabase();
 	public void notifyAllObservers( );	
