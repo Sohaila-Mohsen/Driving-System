@@ -13,7 +13,7 @@ public class RegularUserLogin implements Login{
 	@Override
 	public AbstractUser verifyInformation(String phone, String password) {
     	for (int i = 0; i < data.getRegularUsers().size(); i++) {
-    		if(phone==data.getRegularUsers().get(i).mobileNumber && password==data.getRegularUsers().get(i).password) {
+    		if(phone.equalsIgnoreCase(data.getRegularUsers().get(i).mobileNumber) && password.equalsIgnoreCase(data.getRegularUsers().get(i).password)) {
     			data.getRegularUsers().get(i).setLogedIn(true);
     			return data.getRegularUsers().get(i);
     		}

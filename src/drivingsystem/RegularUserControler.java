@@ -5,14 +5,10 @@
  */
 package drivingsystem;
 
-import java.util.Date;
-import javax.jws.WebService;
-
 /**
  *
  * @author kingston
  */
-@WebService
 public class RegularUserControler  {
     RegularUser R;
 
@@ -20,51 +16,18 @@ public class RegularUserControler  {
         this.R = R;
     }
     
-    public void requestRide(String source, String des ,int numOfPassenger){
+    public void requestRide(String source, String des){
         RideDetails currentRide = new RideDetails();
         currentRide.setSource(source);
         currentRide.setDestnation(des);
         currentRide.setUser(R);
-        currentRide.setNumOfPassengers(numOfPassenger);
         R.setCurrentRide(currentRide);
-        R.DataBase.addRequested(R.getCurrentRide());
         System.out.println("done 1 source : "+R.getCurrentRide().getSource() + " des : "+R.getCurrentRide().getDestnation() );
+        R.DataBase.addRequested(R.getCurrentRide());
     }
     
-    public boolean acceptOffer (int ID){
-        Driver d = SearchDriver.searchDriver(ID);
-        if(R.getCurrentRide().searchSuggested(ID)!=null && !d.IsBusy()){
-            System.out.println("here");
-            R.getCurrentRide().setDriver(d);
-            R.getCurrentRide().getEvent().setCaptain(d);
-            R.getCurrentRide().getEvent().setEventName(EventType.OfferAccepted);
-            Date eventTime = java.util.Calendar.getInstance().getTime();
-            R.getCurrentRide().getEvent().setEventTime(eventTime);
-            R.getCurrentRide().getEvent().setPrice(R.getCurrentRide().searchSuggested(ID).price);
-            R.getCurrentRide().setPrice(R.getCurrentRide().searchSuggested(ID).price);
-            R.getCurrentRide().getEvent().setUser(R);
-            Event event = R.getCurrentRide().getEvent();
-            DB.getDatabase().addEvent(event);
-            R.getCurrentRide().getDriver().setCurrentRide(R.getCurrentRide());
-            d.setCurrentRide(R.getCurrentRide());
-            return true;     
-        }
-            return false;
-    }
     public void update(String message) {
-        if(R.isLogedin())
-            System.out.println(message);
-        else
-            R.addNotification(message);
-    }
-    public void showNotification( ) {
-        for (int i = 0; i < R.getNotifications().size(); i++) {
-            String get = R.getNotifications().get(i);
-            System.out.println(i+". "+get); 
-        }
-        for (int i = 0; i < R.getNotifications().size(); i++) {
-            R.getNotifications().remove(i);
-        }
+         System.out.println(message);
     }
     public void rate (int driverId , float rate) {
         Driver d = R.getSearchDriver().searchDriver(driverId);

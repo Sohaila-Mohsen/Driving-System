@@ -136,9 +136,10 @@ public class DB {
     }
     public void addRequested(RideDetails requsted ) {
         requestedRides.add(requsted);
-         Notification n = new DriverNotification(requsted.getSource() , requsted.getDestnation() ,requsted.getUser().id);
-         n.notifyAllObservers();
-    }
+        Notification n = new DriverNotification(requsted.getSource() , requsted.getDestnation() ,requsted.getUser().id);
+        n.notifyAllObservers();
+        System.out.println("done 3");
+    } 
 
 
 

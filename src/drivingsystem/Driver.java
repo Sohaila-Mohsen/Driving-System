@@ -14,14 +14,17 @@ import java.util.ArrayList;
 public class Driver extends AbstractUser {
     private String licence;
     private String nationalId;
-    private ArrayList <String> favoriteArea ;
+    protected ArrayList <String> favoriteArea ;
     private DriverStatue statue;
     private Rating rating ;
     private String currentRide ;
     SearchRide searchRide=new SearchRide();
+    protected DriverControler controler;
+    
 	
 	
     public Driver() {
+        controler = new DriverControler(this);
         this.favoriteArea = new ArrayList<>();
         this.rating = new Rating();
         id++;
@@ -60,15 +63,7 @@ public class Driver extends AbstractUser {
         this.statue = statue;
     }
 
-    public void listPossibleRides() {
-        for (int i = 0; i < DataBase.getRequestedRides().size(); i++) {
-            for(int j=0 ; j<favoriteArea.size();j++){
-                if ( DataBase.getRequestedRides().get(i).getSource().equals(favoriteArea.get(i))){
-                  System.out.print("User #"+DataBase.getRequestedRides().get(i).getUser().id+" reruested ride # "+DataBase.getRequestedRides().get(i).getRideId());
-                  System.out.println(" from "+DataBase.getRequestedRides().get(i).getSource() +" to "+DataBase.getRequestedRides().get(i).getDestnation());}
-            }
-        }
-    }
+    
     
     public void listRatings() {
         rating.listRating();
@@ -90,13 +85,5 @@ public class Driver extends AbstractUser {
         this.currentRide = currentRide;
     }
 
-    public void suggestPrice(int rideId , float price){
-        if(searchRide.searchRequstedRides(rideId) != null )
-                searchRide.searchRequstedRides(rideId).addPrice(price,id);
-        else
-            System.out.println("Ride is no lonnger available");
-    }
-    public void update (String message){
-        System.out.println(message);
-    }
+   
 }

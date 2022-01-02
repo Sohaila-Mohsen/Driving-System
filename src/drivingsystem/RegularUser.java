@@ -11,10 +11,16 @@ package drivingsystem;
  */
 public class RegularUser extends AbstractUser {
  
-    private RideDetails currentRide ;
+    protected RideDetails currentRide ;
     private UserStatue statue;
-    SearchDriver searchDriver=new SearchDriver();
+    private SearchDriver searchDriver =new SearchDriver();
+    private RegularUserControler conroler;
+
+    public RegularUser() {
+        this.conroler = new RegularUserControler(this);
+    }
   
+    
 
     public UserStatue getStatue() {
         return statue;
@@ -23,30 +29,31 @@ public class RegularUser extends AbstractUser {
     public void setStatue(UserStatue statue) {
         this.statue = statue;
     }
+
+    public RideDetails getCurrentRide() {
+        return currentRide;
+    }
+
+    public void setCurrentRide(RideDetails currentRide) {
+        this.currentRide = currentRide;
+    }
+
+    public SearchDriver getSearchDriver() {
+        return searchDriver;
+    }
+
+    public void setSearchDriver(SearchDriver searchDriver) {
+        this.searchDriver = searchDriver;
+    }
+
+    public RegularUserControler getConroler() {
+        return conroler;
+    }
+
+    public void setConroler(RegularUserControler conroler) {
+        this.conroler = conroler;
+    }
     
-    public void requestRide(String source, String des){
-        currentRide = new RideDetails();
-        currentRide.setSource(source);
-        currentRide.setDestnation(des);
-        currentRide.setUser(this);
-        DataBase.addRequested(currentRide);
-    }
-
-    public void update(String message) {
-         System.out.println(message);
-    }
-
-    public void rate (int driverId , float rate) {
-        Driver d = searchDriver.searchDriver(driverId);
-        if(d==null)
-            System.out.println("Driver not Found");
-        else{
-	        if(rate >=1 && rate<=5){
-	           d.getRating().addRating(rate, this.getId());
-	        }
-	        else
-	            System.out.println("Rating Must Be between 1 and 5 ");
-        }
-
-    }
+    
+    
 }

@@ -24,14 +24,14 @@ public class SystemInterface extends Thread{
 			String source=input.nextLine();
 			source=input.nextLine();
 			String des=input.nextLine();
-			((RegularUser)U).requestRide(source,des);
-			userInterface( U);
+			((RegularUser)U).getConroler().requestRide(source,des);
+			userInterface(U);
 			break;
 		case 2:
 			System.out.println("Enter Your Driver Id & Your Rate : ");
 			int driverId=input.nextInt();
 			float rate =input.nextFloat();
-			((RegularUser)U).rate(driverId, rate);
+			((RegularUser)U).getConroler().rate(driverId, rate);
 			userInterface( U);
 			break;
 		case 3:
@@ -55,7 +55,7 @@ public class SystemInterface extends Thread{
 		switch(choice)
 		{
 		case 1 :
-			((Driver)D).listPossibleRides();
+			((Driver)D).controler.listPossibleRides();
 			System.out.println("1. Suggest Price : ");
 			System.out.println("2. back : ");
 			choice=input.nextInt();
@@ -65,7 +65,7 @@ public class SystemInterface extends Thread{
 				System.out.println("Enter Ride Id and Price Offer : ");
 				int rideId=input.nextInt();
 				float price=input.nextInt();
-				((Driver)D).suggestPrice(rideId, price);
+				((Driver)D).controler.suggestPrice(rideId, price);
 				driverInterface(D);
 				break;
 			case 2 :
@@ -84,7 +84,7 @@ public class SystemInterface extends Thread{
 			System.out.println("Enter Ride Id and Price Offer : ");
 			int rideId=input.nextInt();
 			float price=input.nextInt();
-			((Driver)D).suggestPrice(rideId, price);
+			((Driver)D).controler.suggestPrice(rideId, price);
 			driverInterface(D);
 			break;
 		case 4:
@@ -98,6 +98,8 @@ public class SystemInterface extends Thread{
 		//input.close();
 	}
 	public static void adminInterface(AbstractUser A) {
+            Admin x= (Admin)A;
+                 System.out.println("a name ="+x.name);
 		System.out.println("1. list Users ");
 		System.out.println("2. list Drivers ");
 		System.out.println("3. list appending Drivers ");
@@ -119,7 +121,7 @@ public class SystemInterface extends Thread{
 			case 7 :
 				System.out.println("Enter User Id : ");
 				int id=input.nextInt();
-				((Admin)A).suspendRuser(id);
+				x.controler.suspendRuser(id);
 				adminInterface(A);
 				break;
 			case 8 :
@@ -136,7 +138,7 @@ public class SystemInterface extends Thread{
 			case 7 :
 				System.out.println("Enter User Id : ");
 				int id=input.nextInt();
-				((Admin)A).suspendDriver(id);
+				((Admin)A).controler.suspendDriver(id);
 				adminInterface(A);
 				break;
 			case 8 :
@@ -152,7 +154,8 @@ public class SystemInterface extends Thread{
 			
 			
 		case 3 :
-			((Admin)A).listAllPending();
+                        System.out.println("X name ="+x.name);
+			x.controler.listAllPending();
 			System.out.println("7. Reject a Driver ");
 			System.out.println("8. Accept a Driver");
 			System.out.println("9. Go back");
@@ -162,13 +165,13 @@ public class SystemInterface extends Thread{
 			case 7 :
 				System.out.println("Enter User Id : ");
 				int id=input.nextInt();
-				((Admin)A).RejectPending(id);
+				((Admin)A).controler.RejectPending(id);
 				adminInterface(A);
 				break;
 			case 8 :
 				System.out.println("Enter User Id : ");
 				id=input.nextInt();
-				((Admin)A).verify(id);
+				((Admin)A).controler.verify(id);
 				adminInterface(A);
 				break;
 			case 9 :
@@ -182,13 +185,13 @@ public class SystemInterface extends Thread{
 		case 4 :
 			System.out.println("Enter User Id : ");
 			int id=input.nextInt();
-			((Admin)A).suspendRuser(id);
+			((Admin)A).controler.suspendRuser(id);
 			adminInterface(A);
 			break;
 		case 5 :	
 			System.out.println("Enter User Id : ");
 			id=input.nextInt();
-			((Admin)A).suspendDriver(id);
+			((Admin)A).controler.suspendDriver(id);
 			adminInterface(A);
 			break;
 		case 6 :	
@@ -320,7 +323,6 @@ public class SystemInterface extends Thread{
 			
 			l=new RegularUserLogin();
 			AbstractUser U= l.verifyInformation(mobile, password);
-			U= new RegularUser();
 			if(U !=null)
 			{
 				
@@ -344,7 +346,6 @@ public class SystemInterface extends Thread{
 			
 			l=new DriverLogin();
 			AbstractUser D=l.verifyInformation(m, p);
-			D = new Driver();
 			if(D !=null)
 			{
 				driverInterface(D);
@@ -373,9 +374,10 @@ public class SystemInterface extends Thread{
 			l=new AdminLogin();
 			
 			AbstractUser A= l.verifyInformation(mo, password);
-			A =new Admin();
+			//A =new Admin();
 			if(A !=null)
 			{
+                                System.out.println("a name ="+A.name);
 				adminInterface(A);
 			}
 			else

@@ -15,7 +15,7 @@ public class DriverLogin implements Login{
 	public AbstractUser verifyInformation(String phone, String password) {
 		// TODO Auto-generated method stub
     	for (int i = 0; i < data.getDrivers().size(); i++) {
-    		if(phone==data.getDrivers().get(i).mobileNumber && password==data.getDrivers().get(i).password) {
+    		if(phone.equalsIgnoreCase(data.getDrivers().get(i).mobileNumber) && password.equalsIgnoreCase(data.getDrivers().get(i).password)) {
     			return data.getDrivers().get(i);
     		}
     	}

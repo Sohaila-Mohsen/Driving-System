@@ -5,13 +5,10 @@
  */
 package drivingsystem;
 
-import javax.jws.WebService;
-
 /**
  *
  * @author kingston
  */
-@WebService
 public class AdminControler  {
     private Admin A ;
 
@@ -22,9 +19,7 @@ public class AdminControler  {
     public void listAllPending(){
         A.DataBase.listPendding();
     }
-    public void listAllEvents(){
-        A.DataBase.listEvents();
-    }
+
     public void verify(int id){
         Driver driver = A.searchDriver.searchPennding(id);
         if(driver==null)
@@ -38,20 +33,6 @@ public class AdminControler  {
     public void suspendDriver(int id){
          Driver driver = A.searchDriver.searchDriver(id);
          driver.setStatue(DriverStatue.SUSPENDED);
-    }
-    public  void addDiscountArea(String area){
-        boolean exists = false;
-        for (int i = 0; i < A.DataBase.getDiscountAreas().size(); i++) {
-            String get = A.DataBase.getDiscountAreas().get(i);
-            if(get.equalsIgnoreCase(area)){
-                exists = true;
-                break;
-            }     
-        }
-        if(!exists)
-            A.DataBase.addArea(area);
-        else
-            System.out.println("Area already exists");
     }
     
     public void RejectPending(int id){
