@@ -6,13 +6,11 @@
 package drivingsystem;
 
 import java.util.ArrayList;
-import javax.jws.WebService;
 
 /**
  *
  * @author DELL
  */
-@WebService
 public class Rating {  
     private ArrayList <Rate> ratings;
     private float avregeRaiting ;

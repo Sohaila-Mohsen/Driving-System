@@ -5,13 +5,10 @@
  */
 package drivingsystem;
 
-import javax.jws.WebService;
-
 /**
  *
  * @author DELL
  */
-@WebService
 public interface Regesteration {
    DB dataBase = DB.getDatabase();
    public void regester(AbstractUser abstractuser);

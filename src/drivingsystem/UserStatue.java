@@ -5,13 +5,10 @@
  */
 package drivingsystem;
 
-import javax.jws.WebService;
-
 /**
  *
  * @author DELL
  */
-@WebService
 public enum UserStatue {
     SUSPENDED,ACTIVE;
     @Override

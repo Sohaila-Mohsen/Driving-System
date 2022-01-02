@@ -5,18 +5,15 @@
  */
 package drivingsystem;
 
-import javax.jws.WebService;
-
 /**
  *
  * @author DELL
  */
-@WebService
 public class AdminLogin implements Login{
     	@Override
 	public AbstractUser verifyInformation(String phone, String password) {
     	for (int i = 0; i < data.getAdmins().size(); i++) {
-    		if(phone.equalsIgnoreCase(data.getAdmins().get(i).mobileNumber) && password.equalsIgnoreCase(data.getAdmins().get(i).password)) {
+    		if(phone==data.getAdmins().get(i).mobileNumber && password==data.getAdmins().get(i).password) {
     			return data.getAdmins().get(i);
     		}
     	}

@@ -5,13 +5,10 @@
  */
 package drivingsystem;
 
-import javax.jws.WebService;
-
 /**
  *
  * @author DELL
  */
-@WebService
 public class UserNotification implements Notification{
      private String message ;
     private int rideId ;
@@ -27,9 +24,8 @@ public class UserNotification implements Notification{
         int size =  dataBase.getRequestedRides().size();
          for (int i = 0; i < size ; i++) {
             RideDetails get = dataBase.getRequestedRides().get(i);
-            RegularUserControler u = null;
             if(get.getRideId()== rideId ){
-                get.getUser().getConroler().update(message);//maybe cause a problem
+                get.getUser().update(message);
                 }
             }      
         }

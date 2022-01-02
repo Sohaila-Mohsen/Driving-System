@@ -5,24 +5,18 @@
  */
 package drivingsystem;
 
-import java.util.Date;
-import javax.jws.WebService;
-
 /**
  *
  * @author DELL
  */
-@WebService
  public class  AbstractUser {
     protected String name;
     protected String mobileNumber;
     protected String password;
     protected String email;
-    protected float balence;
     private static int incremental=1;
     //protected Regesteration regesteration;
     protected boolean logedIn;
-    protected  Date birthDate;
     protected int id ; 
     public DB DataBase ;
 
@@ -31,7 +25,6 @@ import javax.jws.WebService;
         logedIn =false;
         incremental++;
         id = incremental;
-        balence = 0;
         
     } 
     public String getName() {
@@ -91,30 +84,6 @@ import javax.jws.WebService;
     }
     public void setDataBase(DB DataBase) {
         this.DataBase = DataBase;
-    }
-
-    public float getBalence() {
-        return balence;
-    }
-
-    public void setBalence(float balence) {
-        this.balence = balence;
-    }
-
-    public static int getIncremental() {
-        return incremental;
-    }
-
-    public static void setIncremental(int incremental) {
-        AbstractUser.incremental = incremental;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 
 }

@@ -5,20 +5,17 @@
  */
 package drivingsystem;
 
-import javax.jws.WebService;
-
 /**
  *
  * @author DELL
  */
-@WebService
 public class DriverLogin implements Login{
     
     @Override
 	public AbstractUser verifyInformation(String phone, String password) {
+		// TODO Auto-generated method stub
     	for (int i = 0; i < data.getDrivers().size(); i++) {
-    		if(phone.equalsIgnoreCase(data.getDrivers().get(i).mobileNumber) && password.equalsIgnoreCase(data.getDrivers().get(i).password)) {
-                        data.getDrivers().get(i).setLogedIn(true);
+    		if(phone==data.getDrivers().get(i).mobileNumber && password==data.getDrivers().get(i).password) {
     			return data.getDrivers().get(i);
     		}
     	}

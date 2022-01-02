@@ -6,32 +6,23 @@
 package drivingsystem;
 
 import java.util.ArrayList;
-import javax.jws.WebService;
 
 /**
  *
  * @author DELL
  */
-@WebService
 public class Driver extends AbstractUser {
     private String licence;
     private String nationalId;
-    protected ArrayList <String> favoriteArea ;
-    private  ArrayList<String> notifications;
+    private ArrayList <String> favoriteArea ;
     private DriverStatue statue;
-    private boolean isBusy = false;
-    private boolean logedIn = false;
     private Rating rating ;
-    private RideDetails currentRide  ;
+    private String currentRide ;
     SearchRide searchRide=new SearchRide();
-    protected DriverControler controler;
-    
 	
 	
     public Driver() {
-        controler = new DriverControler(this);
         this.favoriteArea = new ArrayList<>();
-        notifications = new ArrayList<>();
         this.rating = new Rating();
         id++;
     }
@@ -44,15 +35,6 @@ public class Driver extends AbstractUser {
     public void setLicence(String licence) {
         this.licence = licence;
     }
-
-    public boolean IsBusy() {
-        return isBusy;
-    }
-
-    public void setIsBusy(boolean isBusy) {
-        this.isBusy = isBusy;
-    }
-    
 
     public String getNationalId() {
         return nationalId;
@@ -78,7 +60,15 @@ public class Driver extends AbstractUser {
         this.statue = statue;
     }
 
-    
+    public void listPossibleRides() {
+        for (int i = 0; i < DataBase.getRequestedRides().size(); i++) {
+            for(int j=0 ; j<favoriteArea.size();j++){
+                if ( DataBase.getRequestedRides().get(i).getSource().equals(favoriteArea.get(i))){
+                  System.out.print("User #"+DataBase.getRequestedRides().get(i).getUser().id+" reruested ride # "+DataBase.getRequestedRides().get(i).getRideId());
+                  System.out.println(" from "+DataBase.getRequestedRides().get(i).getSource() +" to "+DataBase.getRequestedRides().get(i).getDestnation());}
+            }
+        }
+    }
     
     public void listRatings() {
         rating.listRating();
@@ -92,39 +82,21 @@ public class Driver extends AbstractUser {
         this.rating = rating;
     }
 
-    public RideDetails getCurrentRide() {
+    public String getCurrentRide() {
         return currentRide;
     }
 
-    public void setCurrentRide(RideDetails currentRide) {
+    public void setCurrentRide(String currentRide) {
         this.currentRide = currentRide;
     }
-    public ArrayList<String> getNotifications() {
-        return notifications;
-    }
 
-    public void setNotifications(ArrayList<String> notifications) {
-        this.notifications = notifications;
+    public void suggestPrice(int rideId , float price){
+        if(searchRide.searchRequstedRides(rideId) != null )
+                searchRide.searchRequstedRides(rideId).addPrice(price,id);
+        else
+            System.out.println("Ride is no lonnger available");
     }
-    public void addNotification(String notification) {
-        this.notifications.add(notification);
+    public void update (String message){
+        System.out.println(message);
     }
-
-    public boolean isLogedIn() {
-        return logedIn;
-    }
-
-    public void setLogedIn(boolean logedIn) {
-        this.logedIn = logedIn;
-    }
-
-    public DriverControler getControler() {
-        return controler;
-    }
-
-    public void setControler(DriverControler controler) {
-        this.controler = controler;
-    }
-    
-   
 }

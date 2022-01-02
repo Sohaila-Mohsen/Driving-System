@@ -1,8 +1,5 @@
 package drivingsystem;
 
-import javax.jws.WebService;
-
-@WebService
 public class SearchRUser {
 
 	DB db;
