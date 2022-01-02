@@ -5,17 +5,22 @@
  */
 package drivingsystem;
 
+import javax.jws.WebService;
+
 /**
  *
  * @author DELL
  */
+@WebService
 public class DriverNotification implements Notification{
     private String message ;
     private String source ;
+    private int numOfPassenger;
 
-    public DriverNotification( String source ,String destination,int id) {
-        message ="User #"+id+" reruested ride from "+source+" to "+destination;
+    public DriverNotification( String source ,String destination,int id,int numOfPassenger) {
+        message ="User #"+id+" reruested ride from "+source+" to "+destination+" with "+numOfPassenger+" Passenger";
         this.source = source;
+        this.numOfPassenger = numOfPassenger;
     }
 
     @Override
@@ -23,12 +28,13 @@ public class DriverNotification implements Notification{
         int size =  dataBase.getDrivers().size();
         for (int i = 0; i < size ; i++) {
             Driver get = dataBase.getDrivers().get(i);
-            for(int j=0 ; j<get.getFavoriteArea().size() ; i++)
-            {
-                if(get.getFavoriteArea().get(i)== source ){
-                    get.update(message);
-                }
-            }      
+            if(get.getCurrentRide()!= null){
+                for(int j=0 ; j<get.getFavoriteArea().size() ; j++)
+                {
+                    if(get.getFavoriteArea().get(j).equalsIgnoreCase( source ) ){
+                        get.controler.update(message);//maybe make a problem
+                    }
+            }   }      
         }
     }
     

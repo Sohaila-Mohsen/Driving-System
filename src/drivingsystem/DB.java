@@ -1,14 +1,17 @@
 package drivingsystem;
 
 import java.util.ArrayList;
+import javax.jws.WebService;
 
-
+@WebService
 public class DB {
-	private ArrayList <Driver> drivers =new ArrayList<>();
+    private ArrayList <Driver> drivers =new ArrayList<>();
     private ArrayList <Driver> pending=new ArrayList<>();
     private ArrayList <RegularUser> regularUsers=new ArrayList<>();
     private ArrayList <Admin> admins=new ArrayList<>();
     private ArrayList <RideDetails> requestedRides=new ArrayList<>();
+    private ArrayList <String> discountAreas=new ArrayList<>();
+     private ArrayList <Event> events = new ArrayList<>();
     private static DB Database;
 
     public ArrayList<Driver> getDrivers() {
@@ -26,6 +29,23 @@ public class DB {
     public void setPending(ArrayList<Driver> pending) {
         this.pending = pending;
     }
+
+    public ArrayList<String> getDiscountAreas() {
+        return discountAreas;
+    }
+
+    public void setDiscountAreas(ArrayList<String> discountAreas) {
+        this.discountAreas = discountAreas;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+    
 
     public ArrayList<RegularUser> getRegularUsers() {
         return regularUsers;
@@ -57,109 +77,52 @@ public class DB {
         }
         return Database;
     }
-    public AbstractUser searchUser(String monbileNumber, String pass){
-        for(int i=0 ; i<regularUsers.size() ; i++)
-        {
-            if(regularUsers.get(i).mobileNumber.equalsIgnoreCase(monbileNumber) && regularUsers.get(i).password.equalsIgnoreCase(pass)){
-                return regularUsers.get(i) ;
-            }
-        }
-        return null;
-    }
+    //public AbstractUser searchUser(String monbileNumber, String pass){
 
-    public RegularUser searchUser(int id){
-        for(int i=0 ; i<regularUsers.size() ; i++)
-        {
-            if(regularUsers.get(i).id == id){
-                return regularUsers.get(i) ;
-            }
-        }
-        return null;
-    }
-    public Driver  searchDriver(int id ) {
-         for (int i = 0; i < drivers.size(); i++) {
-            Driver d = drivers.get(i);
-            if(d.getId() == id)
-            {  return d;}
-       }
-         return null;
-    }
-    public AbstractUser searchAdminPhone(String phone) {
-    	for (int i = 0; i < getAdmins().size(); i++) {
-    		if(phone.contains(getAdmins().get(i).getMobileNumber())) {
-    			return getAdmins().get(i);
-    		}
-    	}
-		return null;
-    }
-        public AbstractUser searchPending(String phone) {
-		for (int i = 0; i < pending.size(); i++) {
-			if(phone.contains(pending.get(i).mobileNumber)) {
-				return pending.get(i);
-			}
-		}
-		return null;
-    }
-            
-    public Driver  searchPennding(int id ) {
-         for (int i = 0; i < pending.size(); i++) {
-            Driver d = pending.get(i);
-            if(d.id == id)
-                return d;
-       }
-         return null;
-    }
+  
+    //public RegularUser searchUser(int id){
+
+
+    //search driver
     
-    public AbstractUser searchDriver(String phone) {
-    	for (int i = 0; i < drivers.size(); i++) {
-    		if(phone.contains(drivers.get(i).getMobileNumber())) {
-    			return drivers.get(i);
-    		}
-    	}
+    
+    //public AbstractUser searchAdminPhone(String phone) {
+    
+            
+    //search pending
+    
+   // public AbstractUser searchDriver(String phone) {
 
-		return null;
-    }
 
-    public RideDetails  searchRequstedRides(int id ) {
-         for (int i = 0; i < requestedRides.size(); i++) {
-            RideDetails rd = requestedRides.get(i);
-            if(rd.getRideId() == id)
-                return rd;
-       }
-         return null;
-    }
-    public AbstractUser searchRegularUser(String phone) {
-    	for (int i = 0; i < regularUsers.size(); i++) {
-    		if(phone==regularUsers.get(i).mobileNumber) {
-    			return regularUsers.get(i);
-    		}
-    	}
-    	return null;
-    }
-    public boolean searchRegularUser(AbstractUser regular) {
-    	for (int i = 0; i < regularUsers.size(); i++) {
-    		if(regular.mobileNumber==regularUsers.get(i).mobileNumber) {
-    			return true;
-    		}
-    	}
-
-		return false;
-    	}
+    //public RideDetails  searchRequstedRides(int id ) {
+   
+  
+    //search regular user
+    
+    
+    //searchRegularUser(AbstractUser regular)
         
 
     public void addRuser(AbstractUser rUser){
         regularUsers.add((RegularUser) rUser);
     }
-    public void addAdmin (AbstractUser admin){
-        ((Admin) admin).getEmail();
-        getAdmins().add((Admin) admin);
+    public void addAdmin (Admin admin){
+        admins.add(admin);
     }
     public void removePending(Driver driver){
-        drivers.remove(driver);
+        pending.remove(driver);
     }
 
     public void addPending(AbstractUser driver) {
         pending.add((Driver) driver);
+
+    }
+    public void addEvent(Event event) {
+        events.add(event);
+
+    }
+    public void addArea(String area) {
+        discountAreas.add(area);
 
     }
     public void  addDriver(AbstractUser driver ) {
@@ -192,6 +155,28 @@ public class DB {
             RideDetails ride= requestedRides.get(i);
             System.out.println("Ride # "+ride.getRideId()+" : with"+"\n"+"Source : "+ride.getSource()+"\n"+"Destination" +ride.getDestnation());
         }
+         System.out.println("------------------------------------------");
+    }
+    public void listEvents(){
+        for(int i = 0; i < events.size(); i++) {
+            System.out.println("i = "+i);
+            switch(events.get(i).getEventName()){
+                case PriceSuggested:
+                    System.out.println("Driver : "+events.get(i).getCaptain().getName()+" suggested "+events.get(i).getPrice()+" $ to Ride # "+events.get(i).getRide().getRideId()+" at "+events.get(i).getEventTime().toString()+"\n");
+                    break;
+                case OfferAccepted:
+                    System.out.println("User : "+events.get(i).getUser().getName()+" Accepted Driver # "+events.get(i).getCaptain().getId()+" Offer at "+events.get(i).getEventTime().toString()+"\n");
+                    break;
+                case DriverArived:
+                    System.out.println("Driver : "+events.get(i).getCaptain().getName()+" Arrived  to User : "+events.get(i).getUser().getName()+" Source at "+events.get(i).getEventTime().toString()+"\n");
+                    break;
+                case RideEnded:
+                    System.out.println("Driver : "+events.get(i).getCaptain().getName()+" Arrived  to User : "+events.get(i).getUser().getName()+" Destination at "+events.get(i).getEventTime().toString()+"\n");
+                    break;
+            }
+            
+        }
+         System.out.println("------------------------------------------");
     }
     public void addRide(RideDetails confirmed){
         for(int i = 0; i < requestedRides.size(); i++) {
@@ -199,13 +184,12 @@ public class DB {
                 requestedRides.remove(i);
         }
     }
-    public void addRequested(RideDetails requsted ) {
+    public void addRequested(RideDetails requsted) {
         requestedRides.add(requsted);
-         Notification n = new DriverNotification(requsted.getSource() , requsted.getDestnation() ,requsted.getUser().id);
+        Notification n = new DriverNotification(requsted.getSource() , requsted.getDestnation() ,requsted.getUser().id , requsted.getNumOfPassengers());
         n.notifyAllObservers();
+        System.out.println("done 3");
     } 
-
-
 
     private DB() {
             regularUsers = new ArrayList<>();

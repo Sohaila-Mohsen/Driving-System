@@ -5,18 +5,26 @@
  */
 package drivingsystem;
 
+import javax.jws.WebService;
+
 /**
  *
  * @author DELL
  */
+@WebService
 public class AdminRegesteration implements Regesteration {
+	
+	
+	SearchAdmin searchAdmin=new SearchAdmin();
     @Override
 	public void regester(AbstractUser admin) {
-		if (dataBase.searchAdminPhone(admin.mobileNumber)==null) {
-			dataBase.addAdmin(admin);
+		if (searchAdmin.searchAdminPhone(admin.mobileNumber)==null) {
+			if(1<2)
+				System.out.println("test");
+			dataBase.addAdmin((Admin)admin);
 		}
 		else 
-                    System.out.print("ERROR:ADMIN DATA IN DATABASE!!");
+			System.out.print("ERROR:ADMIN DATA IN DATABASE!!");
 		
 	}
     

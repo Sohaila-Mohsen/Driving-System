@@ -5,6 +5,8 @@
  */
 package drivingsystem;
 
+import javax.jws.WebService;
+
 /**
  *
  * @author DELL
