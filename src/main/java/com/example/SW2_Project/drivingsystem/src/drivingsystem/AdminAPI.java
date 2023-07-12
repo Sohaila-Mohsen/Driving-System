@@ -79,32 +79,5 @@ public class AdminAPI {
 
 
     
-/*
-    if(SearchRUser.searchRegularUser(mobile)==null)
-        return "User Not Found";
-        else if (SearchRUser.searchRegularUser(mobile).isLogedIn()){
-            RegularUser U = (RegularUser) SearchRUser.searchRegularUser(mobile);
-            U.getConroler().requestRide(source,des,num);
-            return "Ride Requested Sucssfuly ";
-        }
-        else
-        return "Login First";
-    A.DataBase.listRuser();
-
-    ((Admin)A).controler.suspendDriver(id);
-
-    ((Admin)A).controler.RejectPending(id);
-
-    x.controler.listAllPending();
-
-    ((Admin)A).controler.verify(id);
-
-
-    x.controler.listAllEvents();
-
-    ((Admin)A).controler.addDiscountArea(area);
-    */
-
-    
     
 }
