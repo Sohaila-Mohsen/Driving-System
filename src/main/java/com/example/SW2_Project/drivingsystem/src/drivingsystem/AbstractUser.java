@@ -14,7 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
     protected String email;
     protected float balence;
     private static int incremental=1;
-    //protected Regesteration regesteration;
     protected boolean logedIn;
     protected  Date birthDate;
     protected int id ; 
