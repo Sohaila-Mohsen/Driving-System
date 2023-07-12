@@ -60,13 +60,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         this.email = email;
     }
 
-//    public Regesteration getRegesteration() {
-//        return regesteration;
-//    }
-//
-//    public void setRegesteration(Regesteration regesteration) {
-//        this.regesteration = regesteration;
-//    }
 
     public  int getId() {
         return id;
