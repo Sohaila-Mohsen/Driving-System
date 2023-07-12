@@ -75,30 +75,6 @@ public class DB {
         }
         return Database;
     }
-    //public AbstractUser searchUser(String monbileNumber, String pass){
-
-  
-    //public RegularUser searchUser(int id){
-
-
-    //search driver
-    
-    
-    //public AbstractUser searchAdminPhone(String phone) {
-    
-            
-    //search pending
-    
-   // public AbstractUser searchDriver(String phone) {
-
-
-    //public RideDetails  searchRequstedRides(int id ) {
-   
-  
-    //search regular user
-    
-    
-    //searchRegularUser(AbstractUser regular)
         
 
     public void addRuser(AbstractUser rUser){
